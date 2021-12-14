@@ -14,6 +14,49 @@ class DataTables extends Component {
 constructor(props) {
     super(props);
 }
+componentDidMount() {
+    this.$el = $(this.el);
+    this.$el.DataTable({
+        dom:'<"data-table-wrapper"t>',
+        data:this.props.data,
+        columns:columns,
+        ordering:false,
+        columnDefs:[
+            {targets:[5],
+        className:'center',
+    createdCell:(td,cellData,rowData)=>
+    ReactDOM.render(
+        <div
+        data-toggle="modal"
+        data-target="#DeleteModal"
+        id={rowData.id}
+        onClick={()=>{this.props.deleteRow(rowData.id);}}>
+            Delete
+
+        </div>,
+        td
+    ),
+    },
+        ],
+    });
+}
+componentWillUnmount() {
+    $(".data-table-wrapper").find("table").DataTable().destroy(true);
+    }
+
+    reloadTableData = (data) => {
+        const table = $('.data-table-wrapper').find('table').DataTable();
+     table.clear();
+     table.rows.add(data);
+     table.draw();
+      }
+shouldComponentUpdate(nextProps, nextState){
+if (nextProps.data.length !== this.props.data.length) {
+       this.reloadTableData(nextProps.data);
+          }
+   return false;
+    }
+
 render() {
     console.log(this.el)
     return (
