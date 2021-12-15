@@ -9,6 +9,13 @@ router.get("/", (req, res) => {
   });
 });
 
+router.get("/:Id", (req, res,next) => {
+  Model.find({"_id":req.params.Id}, (err, data) => {
+    if (err) res.json(err);
+    res.json(data);
+  });
+});
+
 router.post("/", function (req, res) {
   const newModel = new Model(req.body);
   newModel.save((err, data) => {
