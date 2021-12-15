@@ -29,11 +29,12 @@ async function main() {
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+//CORS HATASI ÇÖZÜMÜ
 // Add headers before the routes are defined
 app.use(function (req, res, next) {
 
   // Website you wish to allow to connect
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.setHeader('Access-Control-Allow-Origin', '*');
 
   // Request methods you wish to allow
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
