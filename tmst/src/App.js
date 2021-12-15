@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
+import { Switch } from 'react-router'
 import { Container } from 'semantic-ui-react'
 import Footer from './components/Footer'
 import Header from './components/Header'
@@ -14,11 +15,13 @@ export default class App extends Component {
     return (
       <div>
        <Header/>
-       <Container text>
+       <Container text style={{ minHeight: 300 }}>
+           <Switch>
            <Route exact path="/" component={HomePage}></Route>
            <Route exact path="/malzemeler" component={MaterialPage}></Route>
            <Route exact path="/malzeme/yeni" component={NewMaterialPage}></Route>
            <Route exact path="/malzeme/:id" component={NewMaterialPage}></Route>
+           </Switch>
        </Container>
        <Footer/>
       </div>
