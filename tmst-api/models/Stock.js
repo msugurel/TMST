@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 
 const StockSchema = new Schema(
     {
-        Id: { type: Schema.ObjectId, required: true },
+        UDI: { type: String },
         MaterialId: { type: String, required: true },
         Quantity: { type: String, required: true },
         SKT: { type: String, required: true },
