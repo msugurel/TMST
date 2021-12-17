@@ -12,11 +12,7 @@ import NewUserPage from './components/pages/NewUserPage'
 import WarehousePage from './components/pages/WarehousePage'
 import NewWarehousePage from './components/pages/NewWarehousePage'
 
-
-export default class App extends Component {
-
-  
-  
+export default class App extends Component {  
   render() {
     return (
       <div>

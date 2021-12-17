@@ -7,40 +7,39 @@ function Footer() {
         <div>
         <Segment inverted style={{ margin: '5em 0em 0em', padding: '5em 0em' }} vertical>
           <Container textAlign='center'>
-            <Grid columns={4} divided stackable inverted>
+            <Grid columns={5} divided stackable inverted>
               <Grid.Row>
-                <Grid.Column>
-                  <Header inverted as='h4' content='Group 1' />
+              <Grid.Column>
+                  <Header inverted as='h4' content='' />
                   <List link inverted>
-                    <List.Item as='a'>Link One</List.Item>
-                    <List.Item as='a'>Link Two</List.Item>
-                    <List.Item as='a'>Link Three</List.Item>
-                    <List.Item as='a'>Link Four</List.Item>
+                    <List.Item as='a' href='/'>Panel</List.Item>
                   </List>
                 </Grid.Column>
                 <Grid.Column>
-                  <Header inverted as='h4' content='Group 2' />
+                  <Header inverted as='h4' content='Malzemeler' />
                   <List link inverted>
-                    <List.Item as='a'>Link One</List.Item>
-                    <List.Item as='a'>Link Two</List.Item>
-                    <List.Item as='a'>Link Three</List.Item>
-                    <List.Item as='a'>Link Four</List.Item>
+                    <List.Item as='a' href='/Malzemeler'>Listele</List.Item>
+                    <List.Item as='a' href='/Malzeme/Yeni'>Yeni Ekle</List.Item>
                   </List>
                 </Grid.Column>
                 <Grid.Column>
-                  <Header inverted as='h4' content='Group 3' />
+                  <Header inverted as='h4' content='Kullanıcılar' />
                   <List link inverted>
-                    <List.Item as='a'>Link One</List.Item>
-                    <List.Item as='a'>Link Two</List.Item>
-                    <List.Item as='a'>Link Three</List.Item>
-                    <List.Item as='a'>Link Four</List.Item>
+                    <List.Item as='a' href='/Kullanicilar'>Listele</List.Item>
+                    <List.Item as='a' href='/Kullanici/Yeni'>Yeni Ekle</List.Item>
                   </List>
                 </Grid.Column>
                 <Grid.Column>
-                  <Header inverted as='h4' content='Footer Header' />
+                  <Header inverted as='h4' content='Depolar' />
+                  <List link inverted>
+                    <List.Item as='a' href='/Depolar'>Listele</List.Item>
+                    <List.Item as='a' href='/Depo/Yeni'>Yeni Ekle</List.Item>
+                  </List>
+                </Grid.Column>
+                <Grid.Column>
+                  <Header inverted as='h4' content='TMST' />
                   <p>
-                    Extra space for a call to action inside the footer that could help re-engage
-                    users.
+                    Tıbbi Malzeme Stok Takip Sistemi
                   </p>
                 </Grid.Column>
               </Grid.Row>
@@ -49,16 +48,16 @@ function Footer() {
             <Image src='https://react.semantic-ui.com/logo.png' centered size='mini' />
             <List horizontal inverted divided link size='small'>
               <List.Item as='a' href='#'>
-                Site Map
+                Site Haritası
               </List.Item>
               <List.Item as='a' href='#'>
-                Contact Us
+                Bize Ulaşın
               </List.Item>
               <List.Item as='a' href='#'>
-                Terms and Conditions
+                Kullanım Koşulları
               </List.Item>
-              <List.Item as='a' href='#'>
-                Privacy Policy
+              <List.Item as='a' href='https://github.com/msugurel/'>
+                by msugurel
               </List.Item>
             </List>
           </Container>
