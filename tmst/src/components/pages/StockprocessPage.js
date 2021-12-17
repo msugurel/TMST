@@ -16,7 +16,7 @@ export const StockprocessPage = () => {
     };
     useEffect(() => {
         dispatch(fetchStockprocess())
-        console.log(stockprocessReducer)
+        console.log("<as",stockprocessReducer)
     }, [])
 
     let columns = [

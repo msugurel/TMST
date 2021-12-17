@@ -7,7 +7,7 @@ import {
 } from "../actions/stockprocessActions";
 
 const initialState = {
-    stockProcess: [],newStockProcess:{}, error: {}, loading: false, done: false, gotStockProcess: {}
+    stockprocess: [],newStockprocess:{}, error: {}, loading: false, done: false, gotStockprocess: {}
 }
 
 export default (state = initialState, { type, payload }) => {
@@ -16,7 +16,7 @@ export default (state = initialState, { type, payload }) => {
         case ADD_STOCKPROCESS_PENDING:
             return { ...state, loading: true, done: false }
         case ADD_STOCKPROCESS_FULFILLED:
-            return { ...state, newStockProcess: payload, loading: false, done: true }
+            return { ...state, newStockprocess: payload, loading: false, done: true }
         case ADD_STOCKPROCESS_REJECTED:
             return { ...state, error: payload, loading: false, done: false }
 
@@ -24,7 +24,7 @@ export default (state = initialState, { type, payload }) => {
         case UPDATE_STOCKPROCESS_PENDING:
             return { ...state, loading: true, done: false }
         case UPDATE_STOCKPROCESS_FULFILLED:
-            return { ...state, newStockProcess: payload, loading: false, done: true }
+            return { ...state, newStockprocess: payload, loading: false, done: true }
         case UPDATE_STOCKPROCESS_REJECTED:
             return { ...state, error: payload, loading: false, done: false }
 
@@ -32,7 +32,7 @@ export default (state = initialState, { type, payload }) => {
         case GET_STOCKPROCESS_PENDING:
             return { ...state, loading: true, done: false }
         case GET_STOCKPROCESS_FULFILLED:
-            return { ...state, gotStockProcess: payload, loading: false, done: true }
+            return { ...state, gotStockprocess: payload, loading: false, done: true }
         case GET_STOCKPROCESS_REJECTED:
             return { ...state, error: payload, loading: false, done: false }
 
@@ -40,7 +40,7 @@ export default (state = initialState, { type, payload }) => {
         case FETCH_STOCKPROCESS_PENDING:
             return { ...state, loading: true }
         case FETCH_STOCKPROCESS_FULFILLED:
-            return { ...state, stockProcess: payload, loading: false }
+            return { ...state, stockprocess: payload, loading: false }
         case FETCH_STOCKPROCESS_REJECTED:
             return { ...state, error: payload, loading: false }
 
@@ -50,7 +50,7 @@ export default (state = initialState, { type, payload }) => {
         case DELETE_STOCKPROCESS_FULFILLED:
             return {
                 ...state
-                , stockProcess: state.stockProcess.filter(i => i._id !== payload.id)
+                , stockprocess: state.stockprocess.filter(i => i._id !== payload.id)
                 , loading: false, done: true
             }
         case DELETE_STOCKPROCESS_REJECTED:
