@@ -1,38 +1,40 @@
 
 import { Container, Segment, Button, Icon } from "semantic-ui-react";
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useReducer } from 'react'
 import { fetchMaterials, deleteMaterial } from '../../actions/materialActions';
-import { connect } from 'react-redux'
+import { connect, useSelector, useDispatch } from 'react-redux'
 import DataTable from 'react-data-table-component';
 
-export const MaterialPage = ({ deleteMaterial, fetchMaterials, materialReducer }) => {
-    const [tableData, setTableData] = useState(null)
+export const MaterialPage = () => {
+
+    const materialReducer = useSelector(state => state.materialReducer);
+    const dispatch = useDispatch()
+
     const deleteRow = (id) => {
-        deleteMaterial(id)
+        dispatch(deleteMaterial(id))
         setTimeout(() => {
             fetchMaterials();
         }, 500);
 
         console.log(materialReducer)
     };
-
     useEffect(() => {
-        fetchMaterials();
+        dispatch(fetchMaterials())
     }, [])
 
-    const columns = [
+    let columns = [
         {
             name: 'Malzeme Adı',
-            selector: row => row.Name,sortable: true,
+            selector: row => row.Name, sortable: true,
         },
         {
-            name: 'İşlem',width:'250px',
+            name: 'İşlem', width: '250px',
             cell: (row) => <>
                 <Button inverted color='red' size='mini'
-                data-toggle="modal"
-                data-target="#DeleteModal"
-                id={row._id}
-                onClick={() => { deleteRow(row._id); }}><Icon name='trash' /> Sil </Button>
+                    data-toggle="modal"
+                    data-target="#DeleteModal"
+                    id={row._id}
+                    onClick={() => { deleteRow(row._id); }}><Icon name='trash' /> Sil </Button>
                 <a className="ui mini button" href={`/malzeme/${row._id}`}><Icon name='edit' />  Düzenle</a>
             </>,
             ignoreRowClick: true,
@@ -41,11 +43,10 @@ export const MaterialPage = ({ deleteMaterial, fetchMaterials, materialReducer }
         },
     ];
 
-
     return (
         <div>
-
             <Container fluid>
+
                 {materialReducer.loading && "Veriler Yükleniyor..."}
                 <Segment loading={materialReducer.loading}>
                     <DataTable
@@ -53,24 +54,13 @@ export const MaterialPage = ({ deleteMaterial, fetchMaterials, materialReducer }
                         data={materialReducer.material} pagination
                     />
                 </Segment>
+
             </Container>
         </div>
     )
 }
 
-
-
-
-const mapStateToProps = ({ materialReducer }) => ({
-    materialReducer
-})
-
-
-const mapDispatchToProps = {
-    fetchMaterials, deleteMaterial
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(MaterialPage)
+export default MaterialPage
 
 
 

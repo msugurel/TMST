@@ -9,7 +9,7 @@ import {
 } from "../actions/materialActions";
 
 const initialState = {
-    material: [], error: {}, loading: false, done: false, gotMaterial: {}
+    material: [],newMaterial:{}, error: {}, loading: false, done: false, gotMaterial: {}
 }
 
 export default (state = initialState, { type, payload }) => {
@@ -18,7 +18,7 @@ export default (state = initialState, { type, payload }) => {
         case ADD_MATERIAL_PENDING:
             return { ...state, loading: true, done: false }
         case ADD_MATERIAL_FULFILLED:
-            return { ...state, material: payload, loading: false, done: true }
+            return { ...state, newMaterial: payload, loading: false, done: true }
         case ADD_MATERIAL_REJECTED:
             return { ...state, error: payload, loading: false, done: false }
 
