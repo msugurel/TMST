@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import { Container } from 'semantic-ui-react'
+import { Container,Header,Segment } from 'semantic-ui-react'
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
-
 am4core.useTheme(am4themes_animated);
 
 export default class HomePage extends Component {
@@ -52,9 +51,13 @@ export default class HomePage extends Component {
     return (
       <div>
        <Container>
+
+       <Segment clearing>
+                    <Header as='h3' textAlign='center'>
+                    Malzeme Kullanım İstatistiği
+    </Header>
+                </Segment>
        <div id="chartdiv" style={{ width: "100%", height: "500px" }}></div>
-    
-    
        </Container>
       </div>
     )
