@@ -47,10 +47,10 @@ const NewMaterialForm = ({ formTitle,addNewMaterial, updateMaterial, loading, er
   </Header>
     <Form.Field
       control={Input}
-      label="Name"
+      label="Malzeme Adı"
       value={name}
       onChange={(e) => setName(e.target.value)}
-      placeholder="Name"
+      placeholder="Malzeme Adı"
       error={error.name && { content: error.name }}
     />
 
