@@ -56,7 +56,7 @@ function Footer() {
               <List.Item as='a' href='#'>
                 Kullanım Koşulları
               </List.Item>
-              <List.Item as='a' href='https://github.com/msugurel/'>
+              <List.Item as='a' target='_blank' href='https://github.com/msugurel/'>
                 by msugurel
               </List.Item>
             </List>

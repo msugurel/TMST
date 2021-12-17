@@ -11,13 +11,14 @@ import UserPage from './components/pages/UserPage'
 import NewUserPage from './components/pages/NewUserPage'
 import WarehousePage from './components/pages/WarehousePage'
 import NewWarehousePage from './components/pages/NewWarehousePage'
+import ReportPage from './components/pages/ReportPage'
 
 export default class App extends Component {  
   render() {
     return (
       <div>
        <Header/>
-       <Container style={{ minHeight: 300 }} fluid>
+       <Container style={{ minHeight: 300,padding: '25px', }} fluid>
            <Switch>
            <Route exact path="/" component={HomePage}></Route>
            <Route exact path="/malzemeler" component={MaterialPage}></Route>
@@ -29,6 +30,7 @@ export default class App extends Component {
            <Route exact path="/depolar" component={WarehousePage}></Route>
            <Route exact path="/depo/yeni" component={NewWarehousePage}></Route>
            <Route exact path="/depo/:id" component={NewWarehousePage}></Route>
+           <Route exact path="/raporlar" component={ReportPage}></Route>
            </Switch>
        </Container>
        <Footer/>
