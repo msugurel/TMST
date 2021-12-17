@@ -10,7 +10,7 @@ router.get("/", (req, res) => {
 });
 
 router.get("/:Id", (req, res,next) => {
-  Model.find({"_id":req.params.Id}, (err, data) => {
+  Model.findById({"_id":req.params.Id}, (err, data) => {
     if (err) res.json(err);
     res.json(data);
   });
