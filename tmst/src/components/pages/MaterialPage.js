@@ -12,11 +12,6 @@ export const MaterialPage = () => {
 
     const deleteRow = (id) => {
         dispatch(deleteMaterial(id))
-        setTimeout(() => {
-            fetchMaterials();
-        }, 500);
-
-        console.log(materialReducer)
     };
     useEffect(() => {
         dispatch(fetchMaterials())

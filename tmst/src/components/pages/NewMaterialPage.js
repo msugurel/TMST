@@ -32,7 +32,7 @@ export class NewMaterialPage extends Component {
     }
 }
 const mapStateToProps = ({materialReducer},props) => {
-  console.log("ddd",materialReducer)
+  //console.log("ddd",materialReducer)
 return {
     materialReducer:materialReducer,
     material:materialReducer.material.data

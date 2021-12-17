@@ -52,9 +52,10 @@ export default (state = initialState, { type, payload }) => {
         case DELETE_MATERIAL_FULFILLED:
             //console.log("From Action=>",payload.id);
             //console.log("From State=>",state.material);
+            //console.log("From State New=>",state.material.filter(i => i._id !== payload.id));
             return {
                 ...state
-                , material: state.material.filter(i => i.id !== payload.id)
+                , material: state.material.filter(i => i._id !== payload.id)//Silinen ögeyi state den çıkarıyoruz.
                 , loading: false, done: true
             }
         case DELETE_MATERIAL_REJECTED:
