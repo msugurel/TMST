@@ -26,7 +26,7 @@ export default (state = initialState, { type, payload }) => {
         case UPDATE_MATERIAL_PENDING:
             return { ...state, loading: true, done: false }
         case UPDATE_MATERIAL_FULFILLED:
-            return { ...state, material: payload, loading: false, done: true }
+            return { ...state, newMaterial: payload, loading: false, done: true }
         case UPDATE_MATERIAL_REJECTED:
             return { ...state, error: payload, loading: false, done: false }
 
