@@ -46,23 +46,23 @@ export function deleteStockprocess(id){
     }
 }
 //UPDATE
-export function updateStockprocess({_id,name}){
+export function updateStockprocess({_id,stockId, quantity, userId, processDate}){
     return dispatch => {
         dispatch(
             {
                 type:"UPDATE_STOCKPROCESS",
-                payload:axios.put(`${API_BASE}/stockprocess/${_id}`,{Name:name})
+                payload:axios.put(`${API_BASE}/stockprocess/${_id}`,{StockId:stockId, Quantity:quantity, UserId:userId, ProcessDate:processDate})
             }
         )
     }
 }
 //ADD
-export function addNewStockprocess({name}){
+export function addNewStockprocess({stockId, quantity, userId, processDate}){
     return dispatch => {
         dispatch(
             {
                 type:"ADD_STOCKPROCESS",
-                payload:axios.post(`${API_BASE}/stockprocess`,{Name:name})
+                payload:axios.post(`${API_BASE}/stockprocess`,{StockId:stockId, Quantity:quantity, UserId:userId, ProcessDate:processDate})
             }
         )
     }
