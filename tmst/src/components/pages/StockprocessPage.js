@@ -1,7 +1,7 @@
 
 import { Container, Segment, Button, Icon, Header } from "semantic-ui-react";
 import React, { useEffect } from 'react'
-import { fetchStockprocesss, deleteStockprocess } from '../../actions/stockprocessActions';
+import { fetchStockprocess, deleteStockprocess } from '../../actions/stockprocessActions';
 import { useSelector, useDispatch } from 'react-redux'
 import DataTable from 'react-data-table-component';
 import { Link } from "react-router-dom";
@@ -15,13 +15,26 @@ export const StockprocessPage = () => {
         dispatch(deleteStockprocess(id))
     };
     useEffect(() => {
-        dispatch(fetchStockprocesss())
+        dispatch(fetchStockprocess())
+        console.log(stockprocessReducer)
     }, [])
 
     let columns = [
         {
-            name: 'Depo Adı',
-            selector: row => row._Id, sortable: true,
+            name: 'Malzeme Numarası',
+            selector: row => row.StockId, sortable: true,
+        },
+        {
+            name: 'Kullanım Miktarı',
+            selector: row => row.Quantity, sortable: true,
+        },
+        {
+            name: 'Kullanıcı',
+            selector: row => row.UserId, sortable: true,
+        },
+        {
+            name: 'Tarih',
+            selector: row => row.ProcessDate, sortable: true,
         },
         {
             name: 'İşlem', width: '250px',
@@ -44,7 +57,7 @@ export const StockprocessPage = () => {
             <Container fluid>
                 <Segment clearing>
                     <Header as='h2' floated='left'>
-                        Yapılan Stok İşlemleri
+                        Yapılan Stok İşlemleri 
                     </Header>
                     <Header as='h2' floated='right'>
 

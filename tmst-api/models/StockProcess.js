@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const StockProcessSchema = new Schema(
+const StockProcesSchema = new Schema(
     {
         
         StockId: { type: String, required: true },
@@ -13,4 +13,4 @@ const StockProcessSchema = new Schema(
     }
 )
 
-module.exports = mongoose.model('StockProcess', StockProcessSchema);
+module.exports = mongoose.model('StockProcess', StockProcesSchema);

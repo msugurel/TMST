@@ -1,7 +1,10 @@
+import { Container, Segment, Button, Icon, Header } from "semantic-ui-react";
 import React, { useState } from "react";
 import Axios from "axios";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import { PdfDocument } from "./Report";
+import SemanticDatepicker from 'react-semantic-ui-datepickers';
+import 'react-semantic-ui-datepickers/dist/react-semantic-ui-datepickers.css';
 //https://dev.to/finallynero/generating-pdf-documents-in-react-using-react-pdf-4ka7
 const years = [
   { value: "2010", text: "2010" },
@@ -20,6 +23,7 @@ export default function ReportPage() {
   const [year, setYear] = useState("");
   const [movieDetails, setDetails] = useState([]);
   const [show, setHide] = useState(false)
+  const [processDate, setProcessDate] = useState('');
 
   const fetchMovie = async e => {
     setYear(e.target.value);
@@ -34,10 +38,23 @@ export default function ReportPage() {
     }
   };
 
+  const onProcessTimeChange = (event, data) => setProcessDate(data.value);
   return (
     <div className="container">
-      <h2>Best stocks of the year</h2>
-      <label htmlFor="movies">Select Year</label>
+      <Segment clearing>
+        <Header as='h3' textAlign='center'>
+          Malzeme Kullanım Raporu
+        </Header>
+      </Segment>
+
+      <label>Başlangıç Tarihini Seçiniz</label><br /><br />
+    <SemanticDatepicker locale="tr-TR" format="DD.MM.YYYY" onChange={onProcessTimeChange} />
+    <br /><br />
+    <label>Bitiş Tarihini Seçiniz</label><br /><br />
+    <SemanticDatepicker locale="tr-TR" format="DD.MM.YYYY" onChange={onProcessTimeChange} />
+    <br /><br />
+    <Button primary>Rapor Oluştur</Button>
+      {/* <label htmlFor="movies">Select Year</label>
       <select id="movies" className="select" onChange={fetchMovie}>
         <option defaultValue="" disabled>
           Select your option
@@ -49,8 +66,8 @@ export default function ReportPage() {
             </option>
           );
         })}
-      </select>
-      {show &&<PDFDownloadLink
+      </select> */}
+      {show && <PDFDownloadLink
         document={<PdfDocument data={movieDetails} />}
         fileName="movielist.pdf"
         style={{
