@@ -16,7 +16,7 @@ export default class App extends Component {
     return (
       <div>
        <Header/>
-       <Container text style={{ minHeight: 300 }}>
+       <Container style={{ minHeight: 300 }} fluid>
            <Switch>
            <Route exact path="/" component={HomePage}></Route>
            <Route exact path="/malzemeler" component={MaterialPage}></Route>

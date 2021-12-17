@@ -45,7 +45,7 @@ export const MaterialPage = ({ deleteMaterial, fetchMaterials, materialReducer }
     return (
         <div>
 
-            <Container >
+            <Container fluid>
                 {materialReducer.loading && "Veriler Yükleniyor..."}
                 <Segment loading={materialReducer.loading}>
                     <DataTable

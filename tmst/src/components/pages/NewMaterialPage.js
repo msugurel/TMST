@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import NewMaterialForm from '../NewMaterialForm'
 import { addNewMaterial,getMaterial,updateMaterial } from '../../actions/materialActions';
+import { Container } from 'semantic-ui-react';
 
 export class NewMaterialPage extends Component {
     componentDidMount() {
@@ -15,7 +16,7 @@ export class NewMaterialPage extends Component {
     
     render() {
         return (
-          <div>
+          <Container text>
             Add New Material Page
             <NewMaterialForm
               done={this.props.materialReducer.done}
@@ -26,7 +27,7 @@ export class NewMaterialPage extends Component {
               material={this.props.material}
               gotMaterial={this.props.materialReducer.gotMaterial}
             />
-          </div>
+          </Container>
         );
     }
 }
