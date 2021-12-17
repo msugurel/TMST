@@ -1,7 +1,5 @@
 
 import { Container, Segment, Button, Icon } from "semantic-ui-react";
-import DataTablesComp from "../DataTables";
-import axios from 'axios';
 import React, { useState, useEffect } from 'react'
 import { fetchMaterials, deleteMaterial } from '../../actions/materialActions';
 import { connect } from 'react-redux'
