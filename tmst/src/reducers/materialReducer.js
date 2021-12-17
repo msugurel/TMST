@@ -34,6 +34,7 @@ export default (state = initialState, { type, payload }) => {
         case GET_MATERIAL_PENDING:
             return { ...state, loading: true, done: false }
         case GET_MATERIAL_FULFILLED:
+            //console.log("From gotMaterial=>",payload);
             return { ...state, gotMaterial: payload, loading: false, done: true }
         case GET_MATERIAL_REJECTED:
             return { ...state, error: payload, loading: false, done: false }

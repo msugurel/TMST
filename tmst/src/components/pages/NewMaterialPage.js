@@ -8,6 +8,7 @@ import { Container } from 'semantic-ui-react';
 export class NewMaterialPage extends Component {
     componentDidMount() {
        const {match} = this.props;
+       //console.log("bruası",!this.props.material , match.params.id)
        if (!this.props.material && match.params.id) {
            this.props.getMaterial(match.params.id);
        } 
@@ -17,8 +18,8 @@ export class NewMaterialPage extends Component {
     render() {
         return (
           <Container text>
-            Add New Material Page
             <NewMaterialForm
+              formTitle={"Malzeme"}
               done={this.props.materialReducer.done}
               errorText={this.props.materialReducer.error}
               loading={this.props.materialReducer.loading}

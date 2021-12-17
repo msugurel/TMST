@@ -1,8 +1,8 @@
 
 import { Container, Segment, Button, Icon } from "semantic-ui-react";
-import React, { useState, useEffect, useReducer } from 'react'
+import React, { useEffect} from 'react'
 import { fetchMaterials, deleteMaterial } from '../../actions/materialActions';
-import { connect, useSelector, useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import DataTable from 'react-data-table-component';
 
 export const MaterialPage = () => {

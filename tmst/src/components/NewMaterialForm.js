@@ -1,20 +1,27 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { Button, Image, Form, Input, Message } from 'semantic-ui-react'
+import { Button, Form, Input, Message,Header } from 'semantic-ui-react'
 import { Redirect, useParams } from "react-router-dom";
 
-const NewMaterialForm = ({ addNewMaterial, updateMaterial, loading, errorText, done, material, gotMaterial }) => {
+const NewMaterialForm = ({ formTitle,addNewMaterial, updateMaterial, loading, errorText, done, material, gotMaterial }) => {
   const params = useParams()
   const _id = material ? material.id : params.id;
-  const [name, setName] = useState(material ? material.name : '');
+  const [name, setName] = useState(material ? material.Name : '');
+  const [title, setTitle] = useState('Yeni '+formTitle+' Ekle');
   const [error, setError] = useState({});
   const [submitStatus, setSubmitStatus] = useState(false);
-
   useEffect(() => {
-    if (!material && gotMaterial && gotMaterial.name) {
-      setName(gotMaterial.name);
+    if (!material && gotMaterial && gotMaterial.Name) {
+      setName(gotMaterial.Name);
+      setTitle(formTitle + ' Güncelle')
     }
-  }, [gotMaterial]);
+    if (!_id) //Eğer url de ID yoksa bu bir yeni ekleme işlemidir.
+    {
+      setName("");
+      setTitle(formTitle + ' Ekle')
+    }
+  }, [gotMaterial,_id]);
+  
 
   const onFormSubmit = () => {
     const errMessages = {};
@@ -33,7 +40,11 @@ const NewMaterialForm = ({ addNewMaterial, updateMaterial, loading, errorText, d
       setSubmitStatus(true);
     }
   };
+
   const formData = <Form onSubmit={onFormSubmit} loading={loading}>
+     <Header as='h3' block>
+     {title}
+  </Header>
     <Form.Field
       control={Input}
       label="Name"
@@ -58,7 +69,7 @@ const NewMaterialForm = ({ addNewMaterial, updateMaterial, loading, errorText, d
 
   </Form>
 
-  console.log("kkk", done, submitStatus)
+  //console.log("kkk", done, submitStatus)
   return (
 
     <div>
