@@ -7,6 +7,9 @@ import Header from './components/Header'
 import HomePage from './components/pages/HomePage'
 import MaterialPage from './components/pages/MaterialPage'
 import NewMaterialPage from './components/pages/NewMaterialPage'
+import UserPage from './components/pages/UserPage'
+import NewUserPage from './components/pages/NewUserPage'
+
 
 export default class App extends Component {
 
@@ -22,6 +25,9 @@ export default class App extends Component {
            <Route exact path="/malzemeler" component={MaterialPage}></Route>
            <Route exact path="/malzeme/yeni" component={NewMaterialPage}></Route>
            <Route exact path="/malzeme/:id" component={NewMaterialPage}></Route>
+           <Route exact path="/kullanicilar" component={UserPage}></Route>
+           <Route exact path="/kullanici/yeni" component={NewUserPage}></Route>
+           <Route exact path="/kullanici/:id" component={NewUserPage}></Route>
            </Switch>
        </Container>
        <Footer/>
