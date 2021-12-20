@@ -5,6 +5,7 @@ import { fetchStockprocess, deleteStockprocess } from '../../actions/stockproces
 import { useSelector, useDispatch } from 'react-redux'
 import DataTable from 'react-data-table-component';
 import { Link } from "react-router-dom";
+import moment from "moment";
 
 export const StockprocessPage = () => {
 
@@ -21,20 +22,24 @@ export const StockprocessPage = () => {
 
     let columns = [
         {
-            name: 'Malzeme Numarası',
-            selector: row => row.StockId, sortable: true,
+            name: 'Malzeme Kodu',
+            selector: row => row._id, sortable: true,
         },
         {
-            name: 'Kullanım Miktarı',
+            name: 'Tarih',
+            selector: row => moment(row.ProcessDate).format('DD.MM.YYYY, hh:mm'), sortable: true,
+        },
+        {
+            name: 'Miktar',
             selector: row => row.Quantity, sortable: true,
         },
         {
             name: 'Kullanıcı',
-            selector: row => row.UserId, sortable: true,
+            selector: row => row.UserName +" " +row.UserSurname, sortable: true,
         },
         {
-            name: 'Tarih',
-            selector: row => row.ProcessDate, sortable: true,
+            name: 'Meslek',
+            selector: row => row.UserJob, sortable: true,
         },
         {
             name: 'İşlem', width: '250px',
