@@ -13,6 +13,8 @@ import WarehousePage from './components/pages/WarehousePage'
 import NewWarehousePage from './components/pages/NewWarehousePage'
 import StockprocessPage from './components/pages/StockprocessPage'
 import NewStockprocessPage from './components/pages/NewStockprocessPage'
+import StockPage from './components/pages/StockPage'
+import NewStockPage from './components/pages/NewStockPage'
 import ReportPage from './components/pages/ReportPage'
 
 export default class App extends Component {  
@@ -35,6 +37,9 @@ export default class App extends Component {
            <Route exact path="/islemler" component={StockprocessPage}></Route>
            <Route exact path="/islem/yeni" component={NewStockprocessPage}></Route>
            <Route exact path="/islem/:id" component={NewStockprocessPage}></Route>
+           <Route exact path="/stoklar" component={StockPage}></Route>
+           <Route exact path="/stok/yeni" component={NewStockPage}></Route>
+           <Route exact path="/stok/:id" component={NewStockPage}></Route>
            <Route exact path="/raporlar" component={ReportPage}></Route>
            </Switch>
        </Container>

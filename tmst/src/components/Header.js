@@ -61,6 +61,7 @@ export default class Header extends Component {
               <Menu.Item as={NavLink} to="/kullanicilar" exact={true}>Kullanıcılar</Menu.Item>           
               <Menu.Item as={NavLink} to="/depolar" exact={true}>Depolar</Menu.Item>               
               <Menu.Item as={NavLink} to="/islemler" exact={true}>İşlemler</Menu.Item>                  
+              <Menu.Item as={NavLink} to="/stoklar" exact={true}>Stok</Menu.Item>                  
               <Menu.Item as={NavLink} to="/raporlar" exact={true}>Raporlar</Menu.Item>                  
             </Container>
           </Menu>
