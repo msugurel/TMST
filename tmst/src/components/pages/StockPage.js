@@ -61,11 +61,11 @@ export const StockPage = () => {
             <Container fluid>
                 <Segment clearing>
                     <Header as='h2' floated='left'>
-                        Malzemeler
+                        Stoklar
                     </Header>
                     <Header as='h2' floated='right'>
 
-                        <Button size='mini' primary as={Link} to="/malzeme/yeni" exact="true"><Icon name='add' /> Yeni Ekle</Button>
+                        <Button size='mini' primary as={Link} to="/stok/yeni" exact="true"><Icon name='add' /> Yeni Ekle</Button>
                     </Header>
                 </Segment>
                 {stockReducer.loading && "Veriler Yükleniyor..."}

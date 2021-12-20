@@ -19,7 +19,7 @@ export class NewStockPage extends Component {
         return (
           <Container text>
             <NewStockForm
-              formTitle={"Malzeme"}
+              formTitle={"Stok İşlemi"}
               done={this.props.stockReducer.done}
               errorText={this.props.stockReducer.error}
               loading={this.props.stockReducer.loading}
@@ -33,10 +33,10 @@ export class NewStockPage extends Component {
     }
 }
 const mapStateToProps = ({stockReducer},props) => {
-  //console.log("ddd",stockReducer)
+  console.log("ddd",stockReducer)
 return {
     stockReducer:stockReducer,
-    stock:stockReducer.stock.data
+    stock:stockReducer.stock?.data
     /*TODO:::
 .find(item=>item._id === props.match.params.id)*/}
 }
