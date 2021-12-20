@@ -26,7 +26,7 @@ export const DELETE_STOCK_REJECTED = "DELETE_STOCK_REJECTED"
 export function fetchStocks(){
     return dispatch => {
         dispatch({type:"FETCH_STOCK",
-        payload:axios.get(`${API_BASE}/stocks`).then(res=>res.data)})    
+        payload:axios.get(`${API_BASE}/stocks/all`).then(res=>res.data)})    
     }
 }
 

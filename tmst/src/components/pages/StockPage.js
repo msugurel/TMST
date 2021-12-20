@@ -4,6 +4,7 @@ import React, { useEffect } from 'react'
 import { fetchStocks, deleteStock } from '../../actions/stockActions';
 import { useSelector, useDispatch } from 'react-redux'
 import DataTable from 'react-data-table-component';
+import moment from "moment";
 import { Link } from "react-router-dom";
 
 export const StockPage = () => {
@@ -20,8 +21,24 @@ export const StockPage = () => {
 
     let columns = [
         {
-            name: 'Malzeme Adı',
-            selector: row => row.Name, sortable: true,
+            name: 'Stok No',
+            selector: row => row._id, sortable: true,
+        },
+        {
+            name: 'Malzeme',
+            selector: row => row.MaterialName, sortable: true,
+        },
+        {
+            name: 'Depo',
+            selector: row => row.WarehouseName, sortable: true,
+        },
+        {
+            name: 'Miktar',
+            selector: row => row.Quantity, sortable: true,
+        },
+        {
+            name: 'Sisteme Girme',
+            selector: row => moment(row.CreatedAt).format('DD.MM.YYYY, hh:mm'), sortable: true,
         },
         {
             name: 'İşlem', width: '250px',
