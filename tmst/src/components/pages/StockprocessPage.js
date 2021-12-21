@@ -17,13 +17,16 @@ export const StockprocessPage = () => {
     };
     useEffect(() => {
         dispatch(fetchStockprocess())
-        console.log("<as",stockprocessReducer)
     }, [])
 
     let columns = [
         {
             name: 'Malzeme Kodu',
             selector: row => row._id, sortable: true,
+        },
+        {
+            name: 'Malzeme',
+            selector: row => row.MaterialName, sortable: true,
         },
         {
             name: 'Tarih',
