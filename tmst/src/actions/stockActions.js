@@ -46,23 +46,23 @@ export function deleteStock(id){
     }
 }
 //UPDATE
-export function updateStock({_id,name}){
+export function updateStock({_id,materialId, quantity, warehouseId,SKT, createdAt}){
     return dispatch => {
         dispatch(
             {
                 type:"UPDATE_STOCK",
-                payload:axios.put(`${API_BASE}/stocks/${_id}`,{Name:name})
+                payload:axios.put(`${API_BASE}/stocks/${_id}`,{MaterialId:materialId,Quantity:quantity,WarehouseId:warehouseId,SKT:SKT,CreatedAt:createdAt})
             }
         )
     }
 }
 //ADD
-export function addNewStock({name}){
+export function addNewStock({materialId, quantity, warehouseId,SKT, createdAt}){
     return dispatch => {
         dispatch(
             {
                 type:"ADD_STOCK",
-                payload:axios.post(`${API_BASE}/stocks`,{Name:name})
+                payload:axios.post(`${API_BASE}/stocks`,{MaterialId:materialId,Quantity:quantity,WarehouseId:warehouseId,SKT:SKT})
             }
         )
     }

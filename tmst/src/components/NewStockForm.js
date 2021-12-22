@@ -4,17 +4,19 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Button, Form, Input, Message, Header, Dropdown } from 'semantic-ui-react'
 import { Redirect, useParams } from "react-router-dom";
 import { fetchMaterials } from '../actions/materialActions';
-import { fetchUsers } from '../actions/userActions';
+import { fetchWarehouses } from '../actions/warehouseActions';
 import SemanticDatepicker from 'react-semantic-ui-datepickers';
 import 'react-semantic-ui-datepickers/dist/react-semantic-ui-datepickers.css';
+import moment from 'moment';
 
 
 const NewStockForm = ({ formTitle, addNewStock, updateStock, loading, errorText, done, stock, gotStock }) => {
   const params = useParams()
   const _id = stock ? stock.id : params.id;
-  const [stockId, setStockId] = useState(stock ? stock.StockId : '');
+  const [materialId, setMaterialId] = useState(stock ? stock.MaterialId : '');
   const [quantity, setQuantity] = useState(stock ? stock.Quantity : '');
-  const [userId, setUserId] = useState(stock ? stock.UserId : '');
+  const [warehouseId, setWarehouseId] = useState(stock ? stock.WarehouseId : '');
+  const [SKT, setSKT] = useState(stock ? stock.SKT : '');
   const [createdAt, setCreatedAt] = useState(stock ? stock.CreatedAt : '');
 
   const [title, setTitle] = useState('Yeni ' + formTitle + ' Ekle');
@@ -23,48 +25,53 @@ const NewStockForm = ({ formTitle, addNewStock, updateStock, loading, errorText,
 
 
   const materialReducer = useSelector(state => state.materialReducer);
-  const userReducer = useSelector(state => state.userReducer);
+  
+  const warehouseReducer = useSelector(state => state.warehouseReducer);
   const dispatch = useDispatch()
 
 
 
   useEffect(() => {
-    if (!stock && gotStock && gotStock.StockId) {
-      setStockId(gotStock.StockId);
+    if (!stock && gotStock && gotStock.MaterialId) {
+      setMaterialId(gotStock.MaterialId);
       setQuantity(gotStock.Quantity);
-      setUserId(gotStock.UserId);
+      setWarehouseId(gotStock.WarehouseId);
+      setSKT(gotStock.SKT);
       setCreatedAt(gotStock.CreatedAt);
 
       setTitle(formTitle + ' Güncelle')
     }
     if (!_id) //Eğer url de ID yoksa bu bir yeni ekleme işlemidir.
     {
-      setStockId(null);
+      setMaterialId(null);
       setQuantity(0);
-      setUserId(null);
+      setWarehouseId(null);
+      setSKT(null);
       setCreatedAt(null);
+
       setTitle(formTitle + ' Ekle')
     }
   }, [gotStock, _id]);
 
   useEffect(() => {
     dispatch(fetchMaterials())
-    dispatch(fetchUsers())
+    dispatch(fetchWarehouses())
+    console.log(warehouseReducer,2222)
 
   }, [])
   const onFormSubmit = () => {
     const errMessages = {};
-    if (!stockId) {
-      errMessages.stockId = "Stok can't be blank.";
+    if (!materialId) {
+      errMessages.materialId = "Stok can't be blank.";
     }
 
     setError(errMessages);
     if (Object.keys(errMessages).length === 0) {
       if (!_id) {
-        addNewStock({ stockId, quantity, userId, createdAt });
+        addNewStock({ materialId, quantity, warehouseId,SKT, createdAt });
       }
       else {
-        updateStock({ _id, stockId, quantity, userId, createdAt });
+        updateStock({ _id, materialId, quantity, warehouseId,SKT, createdAt });
       }
       setSubmitStatus(true);
     }
@@ -75,19 +82,20 @@ const NewStockForm = ({ formTitle, addNewStock, updateStock, loading, errorText,
     "value": d._id,
     "text": d.Name
   }))
-  const userOptions = userReducer.user.map(d => ({
+  
+  const warehouseOptions = warehouseReducer.warehouse.map(d => ({
     "key": d._id,
     "value": d._id,
-    "text": d.Name + " " + d.Surname + " ( " + d.Job + " )"
+    "text": d.Name
   }))
 
-  const onMaterialSlcChange = (e, data) => { setStockId(data.value) }
-  const onUserSlcChange = (e, data) => { setUserId(data.value) }
-  const onProcessTimeChange = (event, data) => setCreatedAt(data.value);
+  const onMaterialSlcChange = (e, data) => { setMaterialId(data.value) }
+  const onWarehouseSlcChange = (e, data) => { setWarehouseId(data.value) }
+  const onSKTTimeChange = (event, data) => setSKT(data.value);
 
   const formData = <Form onSubmit={onFormSubmit} loading={loading}>
     <Header as='h3' block>
-      {title}
+      {title} 
     </Header><br />
     <label>Malzeme Seçiniz</label>
     <Dropdown
@@ -96,28 +104,34 @@ const NewStockForm = ({ formTitle, addNewStock, updateStock, loading, errorText,
       search
       selection
       options={materialOptions}
+      value={materialId}
       onChange={onMaterialSlcChange}
     /><br />
     <Form.Field
-      control={Input} type='number' max={50}
-      label="Stok Adedi"
+      control={Input} type='number' max={500}
+      label="Stoklanma Adedi"
       value={quantity}
       onChange={(e) => setQuantity(e.target.value)}
-      placeholder="Stok Adedi"
+      placeholder="Stoklanma Adedi"
       error={error.name && { content: error.name }}
     />
     <br />
-    <label>Stoğa Alan Kullanıcıyı Seçiniz</label>
+    <label>Depo Seçiniz</label>
     <Dropdown
-      placeholder='Kullanıcı Seçiniz'
+      placeholder='Depo Seçiniz'
       fluid
       search
       selection
-      options={userOptions}
-      onChange={onUserSlcChange}
+      value={warehouseId}
+      options={warehouseOptions}
+      onChange={onWarehouseSlcChange}
     /><br />
-    <label>Stoklama Tarihini Seçiniz</label><br />
-    <SemanticDatepicker locale="tr-TR" format="DD.MM.YYYY" onChange={onProcessTimeChange} />
+    
+    
+{SKT!=null && <><label>Seçilen Tarih </label><br /> <label>{moment(SKT).format("DD.MM.YYYY")}</label><br /><br /></>}
+
+<label>Son Kullanım Tarihini Seçiniz </label><br />
+<SemanticDatepicker showToday={true} locale="tr-TR" format="DD.MM.YYYY" onChange={onSKTTimeChange} />
     <br />
 
 

@@ -37,7 +37,11 @@ export const StockPage = () => {
             selector: row => row.Quantity, sortable: true,
         },
         {
-            name: 'Sisteme Girme',
+            name: 'Son Kullanım Tarihi',
+            selector: row => moment(row.SKT).format('DD.MM.YYYY, hh:mm'), sortable: true,
+        },
+        {
+            name: 'Stoklanma Tarihi',
             selector: row => moment(row.CreatedAt).format('DD.MM.YYYY, hh:mm'), sortable: true,
         },
         {
@@ -48,7 +52,7 @@ export const StockPage = () => {
                     data-target="#DeleteModal"
                     id={row._id}
                     onClick={() => { deleteRow(row._id); }}><Icon name='trash' /> Sil </Button>
-                <a className="ui mini button" href={`/malzeme/${row._id}`}><Icon name='edit' />  Düzenle</a>
+                <a className="ui mini button" href={`/stok/${row._id}`}><Icon name='edit' />  Düzenle</a>
             </>,
             ignoreRowClick: true,
             allowOverflow: true,
