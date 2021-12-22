@@ -16,6 +16,7 @@ import NewStockprocessPage from './components/pages/NewStockprocessPage'
 import StockPage from './components/pages/StockPage'
 import NewStockPage from './components/pages/NewStockPage'
 import ReportPage from './components/pages/ReportPage'
+import LoginForm from './components/pages/user/LoginForm'
 
 export default class App extends Component {  
   render() {
@@ -24,6 +25,7 @@ export default class App extends Component {
        <Header/>
        <Container style={{ minHeight: 300,padding: '25px', }} fluid>
            <Switch>
+           <Route exact path="/loginPage" component={LoginForm}></Route>
            <Route exact path="/" component={HomePage}></Route>
            <Route exact path="/malzemeler" component={MaterialPage}></Route>
            <Route exact path="/malzeme/yeni" component={NewMaterialPage}></Route>
