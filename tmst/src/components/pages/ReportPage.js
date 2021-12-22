@@ -1,4 +1,4 @@
-import { Container, Segment, Button, Icon, Header, Grid, Item, Form, Input, Select } from "semantic-ui-react";
+import { Container, Segment, Button, Icon, Header, Grid, Item, Form, Input, Select ,Message} from "semantic-ui-react";
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import { API_BASE } from '../../config/env';
@@ -27,7 +27,8 @@ const styles = StyleSheet.create({
 export default function ReportPage() {
   const [movieDetails, setDetails] = useState([]);
   const [show, setHide] = useState(false)
-  const [processDate, setProcessDate] = useState('');
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
 
   const fetchMovie = async e => {
     setHide(false)
@@ -40,7 +41,14 @@ export default function ReportPage() {
     }
   };
 
-  const onProcessTimeChange = (event, data) => setProcessDate(data.value);
+  const onStartTimeChange = (event, data) => {setHide(false);setStartDate(data.value)};
+  const onEndTimeChange = (event, data) => {setHide(false);setEndDate(data.value)};
+
+  const errorMsg =  <Message negative>
+  <Message.Header>Rapor!</Message.Header>
+  <p>Lütfen rapor oluşturmak için başlangıç ve bitiş tarihlerini seçiniz.</p>
+</Message>
+
   return (
     <>
       <Segment clearing>
@@ -54,13 +62,13 @@ export default function ReportPage() {
             label='Başlangıç Tarihi'
             locale="tr-TR"
             format="DD.MM.YYYY"
-            onChange={onProcessTimeChange} />
+            onChange={onStartTimeChange} />
 
           <SemanticDatepicker
             label='Bitiş Tarihi'
             locale="tr-TR"
             format="DD.MM.YYYY"
-            onChange={onProcessTimeChange} />
+            onChange={onEndTimeChange} />
 
           <Form.Field
             id='form-button-control-public'
@@ -71,7 +79,8 @@ export default function ReportPage() {
           />
         </Form.Group>
       </Form>
-      {show &&
+      {(!startDate || !endDate )&& errorMsg      }
+      {(startDate || endDate ) && show &&
       <Segment>
       <PDFViewer width="100%" height="400">
         <PdfDocument data={movieDetails} />
