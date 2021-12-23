@@ -26,7 +26,7 @@ export default class App extends Component {
        <Container style={{ minHeight: 300,padding: '25px', }} fluid>
            <Switch>
            <Route exact path="/loginPage" component={LoginForm}></Route>
-           <Route exact path="/" component={HomePage}></Route>
+           <Route exact path="/" component={LoginForm}></Route>
            <Route exact path="/malzemeler" component={MaterialPage}></Route>
            <Route exact path="/malzeme/yeni" component={NewMaterialPage}></Route>
            <Route exact path="/malzeme/:id" component={NewMaterialPage}></Route>
