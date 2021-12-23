@@ -26,11 +26,7 @@ export const WarehousePage = () => {
         {
             name: 'İşlem', width: '250px',
             cell: (row) => <>
-                <Button inverted color='red' size='mini'
-                    data-toggle="modal"
-                    data-target="#DeleteModal"
-                    id={row._id}
-                    onClick={() => { deleteRow(row._id); }}><Icon name='trash' /> Sil </Button>
+              
                 <a className="ui mini button" href={`/depo/${row._id}`}><Icon name='edit' />  Düzenle</a>
             </>,
             ignoreRowClick: true,

@@ -27,6 +27,7 @@ export default class App extends Component {
            <Switch>
            <Route exact path="/loginPage" component={LoginForm}></Route>
            <Route exact path="/" component={LoginForm}></Route>
+           <Route exact path="/panel" component={HomePage}></Route>
            <Route exact path="/malzemeler" component={MaterialPage}></Route>
            <Route exact path="/malzeme/yeni" component={NewMaterialPage}></Route>
            <Route exact path="/malzeme/:id" component={NewMaterialPage}></Route>
